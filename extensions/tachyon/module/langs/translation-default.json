@@ -1,0 +1,8 @@
+{
+	"tachyon-exporter": {
+		"uploading": "Uploading...",
+		"upload-error": "Upload error: ",
+		"tachyon-storage": "Tachyon storage",
+		"enter-url": "Enter a URL for the Tachyon"
+	}
+}
