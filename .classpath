@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="main/src"/>
+	<classpathentry kind="src" path="extensions/tachyon/src"/>
 	<classpathentry kind="src" path="server/src"/>
 	<classpathentry kind="src" path="extensions/gdata/src"/>
 	<classpathentry kind="src" path="extensions/jython/src"/>
@@ -84,5 +85,8 @@
 	<classpathentry kind="lib" path="main/webapp/WEB-INF/lib/poi-3.13-20150929.jar"/>
 	<classpathentry kind="lib" path="main/webapp/WEB-INF/lib/poi-ooxml-3.13-20150929.jar"/>
 	<classpathentry kind="lib" path="main/webapp/WEB-INF/lib/poi-ooxml-schemas-3.13-20150929.jar"/>
-	<classpathentry kind="output" path="build"/>
+	<classpathentry kind="lib" path="extensions/tachyon/module/MOD-INF/lib/tachyon-client-0.7.1.jar"/>
+	<classpathentry kind="lib" path="extensions/tachyon/module/MOD-INF/lib/tachyon-common-0.7.1.jar"/>
+	<classpathentry kind="lib" path="extensions/tachyon/module/MOD-INF/lib/tachyon-client-unshaded-0.7.1.jar"/>
+	<classpathentry kind="output" path="main/webapp/WEB-INF/classes"/>
 </classpath>
