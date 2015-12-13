@@ -84,5 +84,5 @@
 	<classpathentry kind="lib" path="main/webapp/WEB-INF/lib/poi-3.13-20150929.jar"/>
 	<classpathentry kind="lib" path="main/webapp/WEB-INF/lib/poi-ooxml-3.13-20150929.jar"/>
 	<classpathentry kind="lib" path="main/webapp/WEB-INF/lib/poi-ooxml-schemas-3.13-20150929.jar"/>
-	<classpathentry kind="output" path="build"/>
+	<classpathentry kind="output" path="main/webapp/WEB-INF/classes"/>
 </classpath>

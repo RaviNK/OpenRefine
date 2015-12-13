@@ -37,6 +37,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -77,6 +78,7 @@ import org.apache.tools.bzip2.CBZip2InputStream;
 import org.apache.tools.tar.TarEntry;
 import org.apache.tools.tar.TarInputStream;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,11 +88,13 @@ import com.google.refine.ProjectMetadata;
 import com.google.refine.RefineServlet;
 import com.google.refine.importing.ImportingManager.Format;
 import com.google.refine.importing.UrlRewriter.Result;
+import com.google.refine.io.FileProjectManager;
 import com.google.refine.model.Project;
 import com.google.refine.util.JSONUtilities;
 
 public class ImportingUtilities {
     final static protected Logger logger = LoggerFactory.getLogger("importing-utilities");
+    public static final String IMPORT_OPTIONS_FILE = "import-options.json";
     
     static public interface Progress {
         public void setProgress(String message, int percent);
@@ -1032,14 +1036,36 @@ public class ImportingUtilities {
                 ProjectManager.singleton.registerProject(project, pm);
                 
                 job.setProjectID(project.id);
-                job.setState("created-project");
+                // save the options
+                try {
+                    writeOptionsFile(optionObj, project.id);
+                } catch (JSONException e) {
+                    exceptions.add(e);
+                } catch (IOException e) {
+                    exceptions.add(e);
+                }
+            }    
+             
+            if (exceptions.size() == 0) {
+                    job.setState("created-project");
             } else {
                 job.setError(exceptions);
             }
+            
             job.touch();
             job.updating = false;
+            
+
         }
     }
-    
+
+    static private void writeOptionsFile(JSONObject options, long id) throws IOException, JSONException {
+        File projectDir = ((FileProjectManager)ProjectManager.singleton).getProjectDir(id);
+        File file = new File(projectDir, IMPORT_OPTIONS_FILE);
+        
+        FileWriter writer = new FileWriter(file);
+        options.write(writer);
+        writer.close();
+    }
 
 }
